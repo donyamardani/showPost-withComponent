@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function Body() {
+export default function Body({Post}) {
   return (
     <div className="container">
       <div className="post">
-        <img src={} alt="" />
-        <h1></h1>
+        <img src={`assets/${Post?.image}`} alt="" />
+        <h1>{Post?.title}</h1>
         <div>
-          
+          {Post?.body}
         </div>
       </div>
       <div className="comments">

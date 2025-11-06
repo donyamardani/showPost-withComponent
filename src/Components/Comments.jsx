@@ -1,19 +1,15 @@
 import React from 'react'
 
-export default function Comments() {
+export default function Comments({comments}) {
+    const items=comments?.map((e,index)=><div key={index} className='comment'>
+        <p>{e.body}</p>
+
+    </div>)
   return (
     
       <div className="comments">
         <p>Comments:</p>
-        <div className="comment">
-          <p>Comment 1</p>
-        </div>
-        <div className="comment">
-          <p>Comment 2</p>
-        </div>
-        <div className="comment">
-          <p>Comment 3</p>
-        </div>
+        {items}
       </div>
   )
 }

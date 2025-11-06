@@ -5,7 +5,7 @@ const [comments,setComments]=useState()
 useEffect(()=>{
   (async()=>{
     try {
-      const res=await fetch(`http://localhost:3001/comments?PostId=${Post.id}`)
+      const res=await fetch(`http://localhost:3001/comments?post-id=${Post.id}`)
       const data=await res.json()
       setComments(data)
     } catch (error) {
@@ -22,7 +22,7 @@ useEffect(()=>{
           {Post?.body}
         </div>
       </div>
-      {comments && <Comment comments={comments}/>}
+      {comments && <Comments comments={comments}/>}
     </div>
   );
 }

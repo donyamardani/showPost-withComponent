@@ -1,6 +1,18 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import Comments from "./Comments";
 export default function Body({Post}) {
+const [comments,setComments]=useState()
+useEffect(()=>{
+  (async()=>{
+    try {
+      const res=await fetch(`http://localhost:3001/comments?PostId=${Post.id}`)
+      const data=await res.json()
+      setComments(data)
+    } catch (error) {
+      console.log(error)
+    }
+  })()
+},[Post])
   return (
     <div className="container">
       <div className="post">
@@ -10,18 +22,7 @@ export default function Body({Post}) {
           {Post?.body}
         </div>
       </div>
-      <div className="comments">
-        <p>Comments:</p>
-        <div className="comment">
-          <p>Comment 1</p>
-        </div>
-        <div className="comment">
-          <p>Comment 2</p>
-        </div>
-        <div className="comment">
-          <p>Comment 3</p>
-        </div>
-      </div>
+      {comments && <Comment comments={comments}/>}
     </div>
   );
 }
